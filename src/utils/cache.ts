@@ -31,7 +31,7 @@ const scheduleKeyvSqliteCleanup = (keyvSqlite: KeyvSqlite): void => {
 export const createKeyvSqlite = (name: string): KeyvStoreAdapter => {
   const cacheDir = getCacheDir();
 
-  if (envIsTest() || !cacheDir) {
+  if (envIsTest() || !cacheDir || process.env['VERCEL']) {
     return new KeyvCacheableMemory();
   }
 
