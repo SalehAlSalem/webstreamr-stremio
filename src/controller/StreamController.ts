@@ -29,6 +29,14 @@ export class StreamController {
     const type: ContentType = (req.params['type'] || '') as ContentType;
     const rawId: string = req.params['id'] as string || '';
 
+    if (rawId.startsWith('yt_id:')) {
+      const ytId = rawId.replace('yt_id:', '');
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Cache-Control', 'public, max-age=86400, immutable');
+      res.send(JSON.stringify({ streams: [{ ytId }] }));
+      return;
+    }
+
     let id: Id;
     if (rawId.startsWith('tmdb:')) {
       id = TmdbId.fromString(rawId.replace('tmdb:', ''));

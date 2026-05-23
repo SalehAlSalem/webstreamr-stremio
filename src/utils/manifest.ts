@@ -25,9 +25,17 @@ export const buildManifest = (sources: Source[], extractors: Extractor[], config
     types: [
       'movie',
       'series',
+      'channel',
     ],
-    catalogs: [],
-    idPrefixes: ['tmdb:', 'tt'],
+    catalogs: [
+      {
+        type: 'channel',
+        id: 'webstreamr_yt_search',
+        name: 'YouTube Channels',
+        extra: [{ name: 'search', isRequired: true }]
+      }
+    ],
+    idPrefixes: ['tmdb:', 'tt', 'webstreamr_yt_channel:', 'yt_id:'],
     logo: 'https://emojiapi.dev/api/v1/spider_web/256.png',
     behaviorHints: {
       p2p: false,
