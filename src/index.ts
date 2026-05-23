@@ -172,7 +172,11 @@ addon.get('/stats', async (_req: Request, res: Response) => {
   });
 });
 
-const port = parseInt(envGet('PORT') || '51546');
-addon.listen(port, () => {
-  logger.info(`Add-on Repository URL: http://127.0.0.1:${port}/manifest.json`);
-});
+if (!process.env.VERCEL) {
+  const port = parseInt(envGet('PORT') || '51546');
+  addon.listen(port, () => {
+    logger.info(`Add-on Repository URL: http://127.0.0.1:${port}/manifest.json`);
+  });
+}
+
+export default addon;
