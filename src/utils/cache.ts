@@ -5,11 +5,11 @@ import { KeyvCacheableMemory } from 'cacheable';
 import { glob } from 'glob';
 import { KeyvStoreAdapter } from 'keyv';
 import winston from 'winston';
-import { envGet, envIsTest } from './env';
+import { envGet } from './env';
 
 const getCacheDir = (): string => envGet('CACHE_DIR') ?? os.tmpdir();
 
-export const createKeyvSqlite = (name: string): KeyvStoreAdapter => {
+export const createKeyvSqlite = (_name: string): KeyvStoreAdapter => {
   return new KeyvCacheableMemory();
 };
 
